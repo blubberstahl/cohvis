@@ -23,24 +23,29 @@ docker exec -it cohviz_web_1 /bin/bash
 python manage.py migrate
 ```
 
-Make sure you got the [Germanet files](http://www.sfs.uni-tuebingen.de/GermaNet/) and installed it put it in `/code/cohapp/coherenceanalyzer/GN_V90_XML/`. 
-
-Setup mongo database: 
+Collectstatic files
 
 ```
 docker exec -it cohviz_web_1 /bin/bash
-mongod --dbpath /cohapp/coherenceanalyzer/mongodb/ &
-python -m pygermanet.mongo_import /code/cohapp/coherenceanalyzer/GN_V90_XML/
+python manage.py collectstatic
 ```
 
-Download the nltk dataset inside your docker web container: 
+Install spacy models:
 
 ```
-import nltk
-nltk.download()
+docker exec -it cohviz_web_1 /bin/bash
+pip install -U spacy
+python -m spacy download en_core_web_sm
+python -m spacy download de_core_news_md
 ```
 
-Your application should be running on `localhost:8080`. 
+Setup django super user
+
+```
+python manage.py createsuperuser
+```
+
+Your application should be running on `localhost:8084`. 
 
 In order to stop the application run
 
