@@ -15,7 +15,7 @@ Afterwards, fire up the application:
 ```
 docker-compose up
 ```
-Install spacy models:
+Install spacy models: '(done wit *md-model)'
 
 ```
 docker exec -it cohvis_web_1 /bin/bash
