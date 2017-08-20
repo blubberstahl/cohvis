@@ -15,28 +15,29 @@ Afterwards, fire up the application:
 ```
 docker-compose up
 ```
+Install spacy models:
+
+```
+docker exec -it cohvis_web_1 /bin/bash
+pip install -U spacy
+python -m spacy download en_core_web_sm
+python -m spacy download de_core_news_md
 
 Migrate django models:
 
 ```
-docker exec -it cohviz_web_1 /bin/bash
+docker exec -it cohvis_web_1 /bin/bash
 python manage.py migrate
 ```
 
 Collectstatic files
 
 ```
-docker exec -it cohviz_web_1 /bin/bash
+docker exec -it cohvis_web_1 /bin/bash
 python manage.py collectstatic
 ```
 
-Install spacy models:
 
-```
-docker exec -it cohviz_web_1 /bin/bash
-pip install -U spacy
-python -m spacy download en_core_web_sm
-python -m spacy download de_core_news_md
 ```
 
 Setup django super user
